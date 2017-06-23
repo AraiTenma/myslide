@@ -13,7 +13,11 @@ int main() {
 
 ---
 
-### aoj-0557（1年生）の愚直な解法
+## aoj-0557（1年生）の解説
+
+---
+
+### 愚直な解法（再帰で）
 
 ```
 #include <iostream>
@@ -44,3 +48,40 @@ int main() {
   return 0;
 }
 ```
+
+---
+
+### メモ化再帰
+
+```
+#include <iostream>
+using namespace std;
+
+typedef long long ll;
+int N;
+int a[110];
+ll memo[110][21];
+
+// n：何番目の数まで使えるか、sum：今の合計値
+ll solve(int n, int sum) {
+  if (memo[n][sum]) return memo[n][sum];
+
+  if (n == N - 1) return (sum == a[n]);
+
+  if (sum + a[n] <= 20) memo[n][sum] += solve(n + 1, sum + a[n]);
+  if (sum - a[n] >= 0) memo[n][sum] += solve(n + 1, sum - a[n]);
+  return memo[n][sum];
+}
+
+int main() {
+  // 入力
+  cin >> N;
+  for (int i = 0; i < N; i++) cin >> a[i];
+
+  // メモ化再帰
+  cout << solve(1, a[0]) << endl;
+  return 0;
+}
+```
+
+
