@@ -1,6 +1,6 @@
 ### こんにちは！
 
-```
+```c++:Hello.cpp
 #include <iostream>
 using namespace std;
 
@@ -68,12 +68,8 @@ ll solve(int n, int sum) {
 
   if (n == N - 1) return (sum == a[n]);
 
-  if (sum + a[n] <= 20) {
-    memo[n][sum] += solve(n + 1, sum + a[n]);
-  }
-  if (sum - a[n] >= 0) {
-    memo[n][sum] += solve(n + 1, sum - a[n]);
-  }
+  if (sum + a[n] <= 20) memo[n][sum] += solve(n + 1, sum + a[n]);
+  if (sum - a[n] >= 0) memo[n][sum] += solve(n + 1, sum - a[n]);
   return memo[n][sum];
 }
 
