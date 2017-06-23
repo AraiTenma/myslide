@@ -119,3 +119,44 @@ int main() {
 }
 ```
 
+---
+
+### aoj-2331（A Way to Invite Friends）の解説
+
+---
+
+### 累積和
+
+```c++:aoj-2331.cpp
+#include <iostream>
+using namespace std;
+
+const int MAX = 1e5 + 5;
+int N;
+int a, b;
+int arr[MAX]; // 海に行くのがi(1<=i<=100001)人なら行く人の数を格納する
+
+int main() {
+  // 入力
+  cin >> N;
+  for (int i = 0; i < N; i++) {
+    cin >> a >> b;
+    arr[a]++;
+    arr[b+1]--;
+  }
+  // 累積和をとる
+  arr[1] = 1; // 海に行くのは「わたし」も入っているので「わたし」の分
+  for (int i = 2; i < MAX; i++) {
+    arr[i] += arr[i-1];
+  }
+  // iは海に行く人数を表す。ansには海に行く最大人数が入るので解答は「わたし」の分を抜いた数
+  int ans;
+  for (int i = 1; i < MAX; i++) {
+    if (i <= arr[i]) ans = i;
+  }
+  // 解答
+  cout << ans - 1 << endl;
+  return 0;
+}
+```
+
