@@ -19,7 +19,7 @@ int main() {
 
 ### 愚直な解法（再帰で）
 
-```
+```c++:aoj-0557_rec.cpp
 #include <iostream>
 using namespace std;
 
@@ -53,7 +53,7 @@ int main() {
 
 ### メモ化再帰
 
-```
+```c++:aoj-0557_memo_rec.cpp
 #include <iostream>
 using namespace std;
 
