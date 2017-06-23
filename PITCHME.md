@@ -88,7 +88,7 @@ int main() {
 
 ### 動的計画法
 
-```
+```c++:aoj-0557.cpp
 #include <iostream>
 using namespace std;
 
