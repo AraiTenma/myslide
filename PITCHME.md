@@ -88,7 +88,7 @@ int main() {
 
 ### 動的計画法
 
-```c++:aoj-0557.cpp
+```
 #include <iostream>
 using namespace std;
 
@@ -97,26 +97,25 @@ typedef long long ll;
 int main() {
   int N;
   cin >> N;
-  int num[N];
-  for (int i = 0; i < N; i++) cin >> num[i];
+  int a[N];
+  for (int i = 0; i < N; i++) cin >> a[i];
 
   ll dp[N+1][21];
   fill(dp[0], dp[N], 0);
 
-  dp[0][num[0]] = 1;
+  dp[0][a[0]] = 1;
   for (int i = 1; i < N - 1; i++) {
     for (int j = 0; j <= 20; j++) {
       if (dp[i-1][j] > 0) {
-        if (j + num[i] <= 20) dp[i][j + num[i]] += dp[i-1][j];
-        if (j - num[i] >= 0) dp[i][j - num[i]] += dp[i-1][j];
+        if (j + a[i] <= 20) dp[i][j + a[i]] += dp[i-1][j];
+        if (j - a[i] >= 0) dp[i][j - a[i]] += dp[i-1][j];
       }
     }
   }
 
   // 解答
-  cout << dp[N-2][num[N-1]] << endl;
+  cout << dp[N-2][a[N-1]] << endl;
   return 0;
 }
 ```
-
 
