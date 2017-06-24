@@ -1,5 +1,4 @@
 ### こんにちは！
-[Yahoo](http://yahoo.co.jp)
 
 ```c++:Hello.cpp
 #include <iostream>
@@ -14,7 +13,7 @@ int main() {
 
 ---
 
-### aoj-0557（1年生）の解説
+### [aoj-0557（1年生）](http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0557)の解答
 
 ---
 
@@ -122,7 +121,7 @@ int main() {
 
 ---
 
-### aoj-2331（A Way to Invite Friends）の解説
+### [aoj-2331（A Way to Invite Friends）](http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2331)の解答
 
 ---
 
