@@ -26,15 +26,17 @@ using namespace std;
 typedef long long ll;
 int N;
 int a[110];
-ll ans = 0;
 
 // n：何番目の数まで使えるか、sum：今の合計値
-void solve(int n, int sum) {
-  if (n >= N) return;
-  if (n == N - 1) ans += (sum == a[n]);
+ll solve(int n, int sum) {
+  // nがN-1まで到達して、sumがa[N-1]の値と一致していたら1を返し、一致していなかったら0を返す
+  if (n == N - 1) return (sum == a[N-1]);
 
-  if (sum + a[n] <= 20) solve(n + 1, sum + a[n]);
-  if (sum - a[n] >= 0) solve(n + 1, sum - a[n]);
+  // 再帰で全探索していく
+  ll res = 0;
+  if (sum + a[n] <= 20) res += solve(n + 1, sum + a[n]);
+  if (sum - a[n] >= 0) res += solve(n + 1, sum - a[n]);
+  return res;
 }
 
 int main() {
@@ -43,8 +45,7 @@ int main() {
   for (int i = 0; i < N; i++) cin >> a[i];
 
   // 再帰で全探索
-  solve(0, 0);
-  cout << ans << endl;
+  cout << solve(1, a[0]) << endl;
   return 0;
 }
 ```
@@ -60,14 +61,17 @@ using namespace std;
 typedef long long ll;
 int N;
 int a[110];
-ll memo[110][21];
+ll memo[110][21]; // メモ用の配列
 
 // n：何番目の数まで使えるか、sum：今の合計値
 ll solve(int n, int sum) {
+  // 既にn, sumの組みの値が計算されていたらメモしてある値を返す
   if (memo[n][sum]) return memo[n][sum];
 
-  if (n == N - 1) return (sum == a[n]);
+  // nがN-1まで到達して、sumがa[N-1]の値と一致していたら1を返し、一致していなかったら0を返す
+  if (n == N - 1) return (sum == a[N-1]);
 
+  // メモ用の配列に値を格納しながら再帰呼び出しをする
   if (sum + a[n] <= 20) memo[n][sum] += solve(n + 1, sum + a[n]);
   if (sum - a[n] >= 0) memo[n][sum] += solve(n + 1, sum - a[n]);
   return memo[n][sum];
